@@ -3,10 +3,12 @@ import express from 'express';
 import connect from './models/db.js';  // Import the connect function
 import Profile from './models/profile.js';
 import cors from 'cors';
+import dotenv from 'dotenv';
 
 const app = express();
 app.use(express.json());
 app.use(cors());
+dotenv.config();
 
 // Connect to MongoDB
 connect();  // Call the connect function to establish a connection

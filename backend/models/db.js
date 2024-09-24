@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 // Connect to MongoDB
 async function connect() {
   try {
-    await mongoose.connect('mongodb://localhost:27017/linkedinProfiles', {
+    await mongoose.connect(process.env.MONGODB_URI, {
      
     });
     console.log('MongoDB connected');
