@@ -1,9 +1,12 @@
-document.getElementById('getTitleButton').addEventListener('click', () => {
-    // Query the active tab
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        // Get the title of the active tab
-        const tabTitle = tabs[0].title;
-        // Display the title in the popup
-        document.getElementById('title').textContent = `Tab Title: ${tabTitle}`;
+document.getElementById('start').addEventListener('click', () => {
+    console.log('Start button clicked');
+    
+    // Message the background script to start scraping
+    chrome.runtime.sendMessage({ action: 'scrapeLinkedIn' }, (response) => {
+        if (response.success) {
+            console.log('Scraping started successfully');
+        } else {
+            console.error('Failed to start scraping:', response.error);
+        }
     });
 });

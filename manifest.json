@@ -1,12 +1,22 @@
 {
-    "manifest_version": 3,
-    "name": "Tab Title Extension",
-    "description": "Displays the title of the current tab in the popup",
-    "version": "1.0",
-    "action": {
-      "default_popup": "popup.html",
-      "default_icon": "icon.png"
-    },
-    "permissions": ["activeTab"]
+  "manifest_version": 3,
+  "name": "LinkedIn Profile Scraper",
+  "description": "Scrapes LinkedIn profiles and saves data.",
+  "version": "1.0",
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icon.png"
+  },
+  "permissions": [
+    "activeTab", 
+    "scripting", 
+    "tabs", 
+    "storage"
+  ],
+  "host_permissions": [
+    "https://www.linkedin.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
   }
-  
+}
