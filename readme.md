@@ -1,42 +1,28 @@
-# LinkedIn Profile Scraper
+# LinkedIn Profile Scraper Chrome Extension
 
-## Description
-The **LinkedIn Profile Scraper** is a Chrome extension designed to automate the scraping of public LinkedIn profile data. It extracts essential information such as the user's name, about section, bio, location, follower count, and connection count. The collected data is then sent to a backend server for storage and analysis.
+## Overview
+
+This project is a Chrome extension that automates interactions with LinkedIn posts. It allows users to automatically like posts and add comments. The extension can be configured to interact with a set number of posts by adjusting the input fields for likes and comments.
 
 ## Features
-- Scrapes multiple LinkedIn profiles from an array of URLs.
-- Collects the following data from each profile:
-  - Name
-  - About section
-  - Bio
-  - Location
-  - Follower count
-  - Connection count
-- Sends the scraped data to a backend API for storage.
 
-## Installation
-1. Clone the repository or download the project files.
-2. Open Chrome and go to `chrome://extensions/`.
-3. Enable "Developer mode" by toggling the switch in the top right corner.
-4. Click on "Load unpacked" and select the directory containing the extension files.
-5. The extension will be added to your Chrome browser.
+- **Automatic Liking**: Automatically like a specified number of LinkedIn posts.
+- **Automatic Commenting**: Automatically comment on a set number of posts.
+- **Easy Configuration**: Input fields to specify the number of likes and comments.
+- **Real-Time Interaction**: Runs in the background while interacting with the open LinkedIn feed.
 
-## Usage
-1. Click on the extension icon in the Chrome toolbar.
-2. In the popup, click the "Start" button to begin scraping the LinkedIn profiles.
-3. The extension will scrape data from the specified profiles and send it to the backend.
+## Files
 
-## Backend API
-The scraped data is sent to the following API endpoint:
-- `POST http://localhost:3000/api/profile`
+- `manifest.json`: Defines the permissions, content scripts, and background worker for the extension.
+- `popup.html`: The popup UI that allows users to input the number of likes and comments.
+- `popup.js`: Handles user input and sends messages to the background script to start scraping.
+- `background.js`: Manages tab creation, ensures the LinkedIn feed is open, and injects the content script.
+- `content.js`: Handles the actual interaction with the LinkedIn posts, including liking and commenting.
+- `icon.png`: The extension icon displayed in the Chrome toolbar.
 
-Ensure your backend server is running and configured to receive the data.
+## How It Works
 
-## Contributing
-Contributions are welcome! If you have suggestions for improvements or new features, please feel free to submit a pull request.
-
-## License
-This project is licensed under the MIT License. See the LICENSE file for details.
-
-## Acknowledgments
-- Thanks to the Chrome extension documentation and tutorials that helped guide the development of this project.
+1. **Popup Interface**: The user sets the number of likes and comments in the popup and clicks the start button.
+2. **Background Script**: The `background.js` ensures the LinkedIn feed is open and ready for interaction, injecting `content.js` into the page.
+3. **Content Script**: `content.js` iterates over the posts in the LinkedIn feed, performing the likes and comments as per the user's input.
+4. **Interaction Completion**: Once the set number of interactions is complete, the extension notifies the user through the console.

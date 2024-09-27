@@ -6,7 +6,7 @@
   <style>
     body {
       width: 350px;
-      height: 150px;
+      height: 250px; /* Increased height to fit inputs */
       display: flex;
       flex-direction: column;
       gap: 20px;
@@ -23,9 +23,7 @@
     button {
       font-size: 16px;
       color: #fff;
-      /* White text color */
       background-color: #007bff;
-      /* Bootstrap Blue */
       border: none;
       border-radius: 4px;
       padding: 10px 20px;
@@ -35,7 +33,12 @@
 
     button:hover {
       background-color: #0056b3;
-
+    }
+    button:disabled {
+      background-color: #cccccc; /* Lighter background when disabled */
+      color: #666666; /* Lighter text color when disabled */
+      cursor: not-allowed; /* Change cursor to indicate it's disabled */
+      opacity: 0.6; /* Add opacity to make the button look inactive */
     }
 
     #title {
@@ -45,12 +48,26 @@
       color: rgb(37, 35, 27);
       transition: all 0.5s;
     }
+
+    input[type="number"] {
+      padding: 10px;
+      width: 150px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      text-align: center;
+    }
   </style>
 </head>
 
 <body>
   <div id="title">Click the button to start Scraping.</div>
-  <button id="start">Start Scraping</button>
+
+  <!-- Input fields for like and comment count -->
+  <input type="number" id="likeCount" placeholder="Enter like count" min="1" />
+  <input type="number" id="commentCount" placeholder="Enter comment count" min="1" />
+
+  <!-- Button will remain disabled until both inputs are valid -->
+  <button id="start" disabled>Start Scraping</button>
 
   <script src="popup.js"></script>
 </body>
